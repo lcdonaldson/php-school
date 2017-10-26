@@ -1,4 +1,6 @@
-#php-school
+#Various php files and excersizes.
+
+#1 php-school
 
 This was largely taken from a treehouse tutorial although I did experiment with some changes. So while not a 100% original, it will be over time as I add to and change the specifics to fit the right project.
 
