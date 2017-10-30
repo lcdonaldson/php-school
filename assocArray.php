@@ -38,7 +38,7 @@ $allColors = array(
  "hex"=> "#3cec97")
 ); 
 
-array_multisort( array_column( $allColors, 'family'), SORT_DESC, $allColors );
+// array_multisort( array_column( $allColors, 'family'), SORT_DESC, $allColors );
 
 $arGroupedByFamily = [];
 foreach ($allColors as $color) {
@@ -56,7 +56,7 @@ foreach ($allColors as $color) {
 
    <body>
        <?php foreach ($arGroupedByFamily as $key => $family): ?>
-           <div id="family-container" style="border: 2px solid <?php echo $key; ?>; background-color: $currFamily; width: 100%; display: inline-block; margin-bottom: 1rem; padding: 0.5rem;">
+           <div id="family-container" style="border: 2px solid <?php echo $key; ?>; width: 100%; display: inline-block; margin-bottom: 1rem; padding: 0.5rem;">
                <h2><?php echo $key; ?></h2>
                <?php foreach ($family as $color): ?>
                    <div class="child-container" style="margin-right: 20px; width: 100px; height: 150px; border: 1px solid black; float: left;">
