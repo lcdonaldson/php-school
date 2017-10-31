@@ -35,7 +35,13 @@ $allColors = array(
  "id"=> "6",
  "family"=> "Green",
  "name"=> "Sea Foam",
- "hex"=> "#3cec97")
+ "hex"=> "#3cec97"),
+ 
+ '6' => array(
+ "id"=> "7",
+ "family"=> "yellow",
+ "name"=> "Canary",
+ "hex"=> "#FFFF00")
 ); 
 
 // array_multisort( array_column( $allColors, 'family'), SORT_DESC, $allColors );
