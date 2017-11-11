@@ -39,3 +39,30 @@ echo "New records created successfully";
 $stmt->close();
 $conn->close();
 ?>
+
+***************************************
+          NEXT EXAMPLE
+***************************************
+
+if(isset($_GET['scanTime'])){
+
+// media audit scan time for modal
+    $myArr = [];
+    $time = "SELECT date FROM audit_media ORDER BY date ASC";
+
+    $stmt = \GLTR\Core\Database\Database::getInstance()->conn()->prepare($time);
+    $stmt->execute();
+    $stmt->bind_result($gpid);
+
+    while($stmt->fetch()){
+        array_push($myArr, $gpid);
+    }
+    $stmt->close();
+
+    $date1Timestamp = strtotime(min($myArr));
+    $date2Timestamp = strtotime(max($myArr));
+    $difference = $date2Timestamp - $date1Timestamp;
+    $decMinutes = $difference / 60;
+    $minutes = round($decMinutes);
+    print_r($minutes);
+}
