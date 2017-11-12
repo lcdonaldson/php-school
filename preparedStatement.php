@@ -66,3 +66,24 @@ if(isset($_GET['scanTime'])){
     $minutes = round($decMinutes);
     print_r($minutes);
 }
+
+***************************************
+          NEXT EXAMPLE
+***************************************
+
+if(isset($_GET['totalScans'])){
+
+// media audit number of scans for modal   
+
+    $scans = "SELECT users.fname, users.lname, audit_media.id FROM audit_media INNER JOIN users ON audit_media.guid=users.id";
+    $stmt = \GLTR\Core\Database\Database::getInstance()->conn()->prepare($scans);
+    $stmt->execute();
+    $stmt->bind_result($fname, $lname, $id);
+
+    while ($stmt->fetch()) {
+        $str = sprintf("%s %s %s", $fname, $lname, $id);       
+        $piece = preg_split('/[\s]+/', $str);
+        print_r($piece);
+    }    
+    $stmt->close();   
+} 
