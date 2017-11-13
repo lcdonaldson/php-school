@@ -87,3 +87,28 @@ if(isset($_GET['totalScans'])){
     }    
     $stmt->close();   
 } 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       Ajax below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+$.ajax({
+    url: "gen/inventory_modals.php",
+    type: 'POST',
+    dataType: 'JSON',
+    data: {
+        gvid: gvid,
+        action: "locmodal"
+    },
+    success: function (data) {
+        displayLoading.hide();
+        setTimeout(function () {
+            $("#LOCbutton").modal("show");
+            $(".LocTitle").html(data.producttitle);
+            $("#LOCbutton").data("gvid", gvid);
+            $(".LocLocation").html(data.loc);
+            $(".Lochistory").html(data.history);
+        }, 500);
+    }
+
+});
