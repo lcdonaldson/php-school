@@ -92,23 +92,36 @@ if(isset($_GET['totalScans'])){
        Ajax below
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-$.ajax({
-    url: "gen/inventory_modals.php",
-    type: 'POST',
-    dataType: 'JSON',
-    data: {
-        gvid: gvid,
-        action: "locmodal"
-    },
-    success: function (data) {
-        displayLoading.hide();
-        setTimeout(function () {
-            $("#LOCbutton").modal("show");
-            $(".LocTitle").html(data.producttitle);
-            $("#LOCbutton").data("gvid", gvid);
-            $(".LocLocation").html(data.loc);
-            $(".Lochistory").html(data.history);
-        }, 500);
-    }
+$(document).on('click', '.openBtn', function () {
+        
+//        $('.modal-body').load('auditMedia.php', function(){
+//            $('#mediaStatsModal').modal({show:true});
+//        });
+        
+        displayLoading.show();
+        var id = $(this).data("id");
 
-});
+        $.ajax({
+            url: "gen/auditMedia.php",
+            type: 'POST',
+            dataType: 'JSON',
+            data: {
+                id: id,
+                action: "scansmodal"
+            },
+            success: function (data) {
+                displayLoading.hide();
+                setTimeout(function () {
+                    $("#mediaStatsModal").modal("show");
+                    $(".scanTime").html(data.minutes);
+                    $(".scanFName").html(data.firstName);
+                    $(".scanLName").html(data.lastName);
+                    $(".numberOfScans").html(data.id);
+                    
+                }, 500);
+            }
+
+        });
+        
+        
+    });
